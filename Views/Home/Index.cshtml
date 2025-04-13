@@ -1,0 +1,106 @@
+﻿@{
+
+    ViewData["Title"] = "My CV";
+    float income = 0;
+
+    DateTime zeroTime = new DateTime(1, 1, 1);
+    DateTime today = DateTime.Today;
+    DateTime birthday = new DateTime(2007, 3, 22, 12, 0, 0);
+    TimeSpan span = today - birthday;
+    int years = (zeroTime + span).Year - 1;
+
+    void setIncome()
+    {
+        Console.WriteLine(Model);
+    }
+}
+<link rel="stylesheet" href="./css/site.css" />
+
+<div>
+    
+    <div class="edu-flex-container">
+        <h1 style="text-align: center; 
+            margin-left: 25vw;
+        margin-right: 5vw;
+            width: 50vw;
+        text-align: center" 
+        class="display-4">
+            My CV
+        </h1>
+
+        <img src="~/Images/1728397222705.jpg" style="width: 10vw; height: 12vw; 
+        margin-left: 10%;
+    margin-right: 10%;
+        float: right;
+    position: relative" />
+    </div>
+    
+    <div>
+        <h2 style="text-align: center" class="display-4">Background</h2>
+       </div>
+       <p style="width: 80vw">
+           My name is Saba. I am a @years year old software developer from
+        <a href="https://en.wikipedia.org/wiki/Georgia_(country)">Georgia.</a>
+        I began learning coding in 2024 with Python but have shifted to using languages like C++; JavaScript and C#.
+
+       </p>
+       <br />
+    <h2 style="text-align: center" class="display-4">Education</h2>
+    
+    <div class="edu-flex-container">
+
+        <div class="edu-item">
+            <h3 class="display-4"> School </h3>
+            <p>
+                2012 - 2015: <br />
+                Attended N158 Public school<br />
+                2015 - 2017:<br />
+                Attended N30 Public school<br />
+                2017 - 2024:<br />
+                Attended N63 Public school,<br />
+                graduating in May 2024<br />
+
+            </p>
+        </div>
+
+        <div class="edu-item">
+            <h3 class="display-4"> University </h3>
+            <p>
+                2024 - <br />
+                University of Georgia, Tbilisi<br />
+                Faculty of informatics<br />
+                Current GPA (2024/04/11):<br />
+                3.25 / 4.00<br />
+            </p>
+        </div>
+    </div>
+    <br />
+    <div style="text-align: center">
+        <h2  class="display-4">Work experience</h2>
+        <p>
+            2025 - Bincom Volunteer Programme, C# team<br/>
+            That's all for now
+        </p>
+	</div>
+    <br />
+    <div style="text-align: center">
+        <h2 class="display-4">DEMO: Calculate your income tax</h2>
+        <p> Based on Georgia tax code</p>
+        @using(Html.BeginForm("Index", "Income")){
+            <input type="number" name="i"/> 
+            <button type="submit" style="border: 0px"> submit </button>
+        }
+        @{
+            if(income == 0)
+            {
+                <p> </p>
+            }
+            else
+            {
+                <p> You owe @(income * 0.2) </p>
+            }
+        }
+    </div>
+    <br />
+    @Model
+</div>
