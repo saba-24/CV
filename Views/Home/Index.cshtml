@@ -1,5 +1,4 @@
 ﻿@{
-
     ViewData["Title"] = "My CV";
     float income = 0;
 
@@ -9,10 +8,6 @@
     TimeSpan span = today - birthday;
     int years = (zeroTime + span).Year - 1;
 
-    void setIncome()
-    {
-        Console.WriteLine(Model);
-    }
 }
 <link rel="stylesheet" href="./css/site.css" />
 
@@ -46,61 +41,40 @@
        </p>
        <br />
     <h2 style="text-align: center" class="display-4">Education</h2>
+    @foreach(Edu school in Model[0])
+    {
+        <div style="text-align: center">
+            <p style="font-weight: bold">@school.startDate - @school.endDate</p>
+            <p>@school.name</p>
+            @if(school.GPA != null)
+            {
+                <p>GPA: @school.GPA / 4.00</p>
+            }
+            @if(school.major != null)
+            {
+                <p>Major: @school.major</p>
+            }
+        </div>
+    }
     
-    <div class="edu-flex-container">
-
-        <div class="edu-item">
-            <h3 class="display-4"> School </h3>
-            <p>
-                2012 - 2015: <br />
-                Attended N158 Public school<br />
-                2015 - 2017:<br />
-                Attended N30 Public school<br />
-                2017 - 2024:<br />
-                Attended N63 Public school,<br />
-                graduating in May 2024<br />
-
-            </p>
-        </div>
-
-        <div class="edu-item">
-            <h3 class="display-4"> University </h3>
-            <p>
-                2024 - <br />
-                University of Georgia, Tbilisi<br />
-                Faculty of informatics<br />
-                Current GPA (2024/04/11):<br />
-                3.25 / 4.00<br />
-            </p>
-        </div>
-    </div>
-    <br />
     <div style="text-align: center">
         <h2  class="display-4">Work experience</h2>
-        <p>
-            2025 - Bincom Volunteer Programme, C# team<br/>
-            That's all for now
-        </p>
-	</div>
-    <br />
+        @foreach(Edu work in Model[1])
+        {
+            <p style="font-weight: bold">@work.startDate - @work.endDate</p>
+            <p>@work.name</p>
+        }
+    </div>
+    
     <div style="text-align: center">
         <h2 class="display-4">DEMO: Calculate your income tax</h2>
         <p> Based on Georgia tax code</p>
         @using(Html.BeginForm("Index", "Income")){
             <input type="number" name="i"/> 
-            <button type="submit" style="border: 0px"> submit </button>
-        }
-        @{
-            if(income == 0)
-            {
-                <p> </p>
-            }
-            else
-            {
-                <p> You owe @(income * 0.2) </p>
-            }
+            <button type="submit" style="border: 0px"> submit </button><br />
+            <span>Note: Please enter monthly wage </span>
+
         }
     </div>
     <br />
-    @Model
 </div>
